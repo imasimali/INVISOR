@@ -3,40 +3,40 @@ export default async (req, res) => {
   const { stock } = req.query;
 
   try {
-    var tweets = await getTweets(stock);
-    // var result = shake_shake(cleaner(tweets));
-    res.status(200).json(tweets);
+    var reddits = await getReddits(stock);
+    // var result = shake_shake(cleaner(reddits));
+    res.status(200).json(reddits);
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
 }
 
-async function getTweets(stock){
+async function getReddits(stock){
     const nowDate = new Date();
     const todayDate = nowDate.getDate();
-    var alltweets = [];
+    var allReddits = [];
     for (let i = 0; i < 15; i++){
-      const res = await fetch(`https://scrapybook.axemgit2.repl.co/twitter?stock=${stock}&since=2022-01-${todayDate-i}&until=2022-01-${(todayDate+1)-i}`);
+      const res = await fetch(`https://scrapybook.axemgit2.repl.co/reddit?stock=${stock}&since=2022-01-${todayDate-i}&until=2022-01-${(todayDate+1)-i}`);
       const json = await res.json();
-      alltweets = alltweets.concat(json);
+      allReddits = allReddits.concat(json);
     }
-    for (const value of Object.entries(alltweets)) {
+    for (const value of Object.entries(allReddits)) {
       const date = new Date(value[1].dates);
       value[1].dates = formatYmd(date);
     }
-    return alltweets
+    return allReddits
   }
 
 function shake_shake(arr) {
-    const dateTweets = arr.reduce(function(results, item) {
+    const dateReddits = arr.reduce(function(results, item) {
       if (!results[item.dates]) results[item.dates] = [];
       results[ item.dates ].push(item.title);
       
       return results;
     }, {});
-    // return dateTweets
-    return Object.keys(dateTweets).map(function(key) {
-      return { date: key, news: dateTweets[key] };
+    // return dateReddits
+    return Object.keys(dateReddits).map(function(key) {
+      return { date: key, news: dateReddits[key] };
     });
   }
 
