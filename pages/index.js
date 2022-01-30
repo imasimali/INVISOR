@@ -33,8 +33,8 @@ const Home = function({
   createUserWithEmailAndPassword,
 }) {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     // checkUser(user);
@@ -50,7 +50,7 @@ const Home = function({
     }
   }
 
-  function handleSubmit(e){
+  function handleSubmit(){
     signInWithEmailAndPassword(email, password);
   }
 
@@ -59,6 +59,7 @@ const Home = function({
   // </React.Fragment>
 
   // <Head>  </Head>
+  console.log(user);
 
   return (
     <div>
@@ -101,12 +102,12 @@ const Home = function({
         <h1>Member Login</h1>
         <form onSubmit={ (e) => {e.preventDefault(); handleSubmit(e); }}>
           <div className="username">
-            <input type="text" value={email} onChange={setEmail} required />
+            <input type="text" onChange={(e) => setEmail(e.target.value)} required />
             <span></span>
             <label id="uid">Username</label>
           </div>
           <div className="username">
-            <input type="password" value={password}onChange={setPassword} required />
+            <input type="password" onChange={(e) => setPassword(e.target.value)} required />
             <span></span>
             <label id="lbs">Password</label>
           </div>
@@ -116,6 +117,7 @@ const Home = function({
             Not a member? <a href="">SignUp</a>
           </div>
         </form>
+        <button onClick={(e) => signOut()}>sign out</button>
         <div className="exp1">
           <h3> Our Mission </h3>
           <p>
