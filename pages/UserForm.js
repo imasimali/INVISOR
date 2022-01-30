@@ -43,3 +43,36 @@ const UserForm = ({ onSubmit }) => {
 };
 
 export default UserForm;
+
+// <FormWrapper>
+//         <h1>create user</h1>
+//         <UserForm onSubmit={createUserWithEmailAndPassword} />
+//       </FormWrapper>
+
+//       <FormWrapper>
+//         <h1>sign in</h1>
+//         <UserForm onSubmit={signInWithEmailAndPassword} />
+//       </FormWrapper>
+
+//       <FormWrapper>
+//         <h1>sign out</h1>
+//         <button onClick={signOut}>sign out</button>
+//       </FormWrapper>
+
+//       <FormWrapper>
+//         <h1>clear error</h1>
+//         <button onClick={() => setError(null)}>clear error</button>
+//       </FormWrapper>
+
+//       <FormWrapper>
+//         <h1>user data</h1>
+//         <textarea
+//           style={{ width: 350, height: 200 }}
+//           value={JSON.stringify(user, null, 2)}
+//         />
+//       </FormWrapper>
+
+//       <FormWrapper>
+//         <h1>error data</h1>
+//         <textarea style={{ width: 350, height: 200 }} value={error} />
+//       </FormWrapper>

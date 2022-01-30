@@ -1,25 +1,26 @@
-import React from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import styles from '../styles/Home.module.css';
+import React from "react";
+import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
-import firebase from 'firebase';
-import UserForm from './UserForm';
+import firebase from "firebase";
+import UserForm from "./UserForm";
 import withFirebaseAuth, {
   WrappedComponentProps,
-} from 'react-with-firebase-auth';
-import firebaseConfig from './firebaseConfig';
-import Dashboard from './dashboard';
-import Link from 'next/link'
+} from "react-with-firebase-auth";
+import firebaseConfig from "./firebaseConfig";
+import Link from "next/link";
 
-const firebaseApp = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
+const firebaseApp = !firebase.apps.length
+  ? firebase.initializeApp(firebaseConfig)
+  : firebase.app();
 
 const FormWrapper = ({ children }) => (
-  <>
-    <div style={{ marginLeft: '1.34em' }}>{children}</div>
+  <div>
+    <div style={{ marginLeft: "1.34em" }}>{children}</div>
     <hr />
-  </>
+  </div>
 );
 
 const Home = function({
@@ -41,76 +42,141 @@ const Home = function({
     checkUser(user);
   }, [user]);
 
-  function checkUser(user){
+  function checkUser(user) {
     if (user != null) {
-      router.push('/dashboard');
+      // router.push("/dashboard");
     }
   }
+  // <React.Fragment>
+  //   {loading && <Loading />}
+  // </React.Fragment>
+
+  <Head>
+    <link rel="stylesheet" href="loginstyles.css" type="text/css" /> 
+  </Head>
 
   return (
-
-    <React.Fragment>
+    <div>
       {loading && <Loading />}
-      <FormWrapper>
-        <h1>create user</h1>
-        <UserForm onSubmit={createUserWithEmailAndPassword} />
-      </FormWrapper>
+      <div className="bg-img"></div>
+      <div className="header" id="myheader">
+        <a href="page1.html" className="logo">
+          <img src="logo3.png" height="180" width="180" />
+        </a>
+        <a href="#" className="about">
+          <button className="b3" title="About Us">
+            About
+          </button>
+        </a>
+        <a href="#" className="contact">
+          <button className="b4" title="Contact Us">
+            Contact
+          </button>
+        </a>
+        <a href="#" className="services">
+          <button className="b5" title="Services we offer">
+            Services
+          </button>
+        </a>
+        <a href="#" className="team">
+          <button className="b6" title="Meet our Team">
+            Team
+          </button>
+        </a>
+      </div>
+      <div className="welcome">
+        <h1>Welcome to Invisor!</h1>
+        <h3 className="desp">
+          A smart investment guide for our valued customers.
+        </h3>
+      </div>
 
-      <FormWrapper>
-        <h1>sign in</h1>
-        <UserForm onSubmit={signInWithEmailAndPassword} />
-      </FormWrapper>
-
-      <FormWrapper>
-        <h1>sign out</h1>
-        <button onClick={signOut}>sign out</button>
-      </FormWrapper>
-
-      <FormWrapper>
-        <h1>clear error</h1>
-        <button onClick={() => setError(null)}>clear error</button>
-      </FormWrapper>
-
-      <FormWrapper>
-        <h1>user data</h1>
-        <textarea
-          style={{ width: 350, height: 200 }}
-          value={JSON.stringify(user, null, 2)}
-        />
-      </FormWrapper>
-
-      <FormWrapper>
-        <h1>error data</h1>
-        <textarea style={{ width: 350, height: 200 }} value={error} />
-      </FormWrapper>
-    </React.Fragment>
-  )
-}
+      <div className="vl"></div>
+      <div id="login">
+        <h1>Member Login</h1>
+        <form method="post">
+          <div className="username">
+            <input type="text" required />
+            <span></span>
+            <label id="uid">Username</label>
+          </div>
+          <div className="username">
+            <input type="password" required />
+            <span></span>
+            <label id="lbs">Password</label>
+          </div>
+          <div className="pass">Forgot Password?</div>
+          <input type="submit" value="Login" />
+          <div className="signup_link">
+            Not a member? <a href="#">SignUp</a>
+          </div>
+        </form>
+        <div className="exp1">
+          <h3> Our Mission </h3>
+          <p>
+            At Invisor our mission is to provide people belonging to different
+            socio-economic backgrounds with a platform that enables them to gain
+            financial independence by increasing litreacy about public equity
+            markets.{" "}
+          </p>
+        </div>
+        <div className="exp2">
+          <h3>We would love to hear from you</h3>
+          <ul className="socials">
+            <li>
+              <a href="#">
+                <i className="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fa fa-google-plus"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fa fa-youtube"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fa fa-linkedin-square"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Loading = () => (
   <div
     style={{
-      position: 'fixed',
-      display: 'flex',
+      position: "fixed",
+      display: "flex",
       top: 0,
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      height: '2.68em',
-      background: 'green',
-      color: 'white',
-    }}>
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100%",
+      height: "2.68em",
+      background: "green",
+      color: "white",
+    }}
+  >
     Loading..
   </div>
 );
 
 const firebaseAppAuth = firebaseApp.auth();
 
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
+// const providers = {
+//   googleProvider: new firebase.auth.GoogleAuthProvider(),
+// };
 
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth,
-})(Home);
+export default withFirebaseAuth({ firebaseAppAuth })(Home);
