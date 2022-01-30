@@ -33,6 +33,8 @@ const Home = function({
   createUserWithEmailAndPassword,
 }) {
   const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     // checkUser(user);
@@ -47,20 +49,23 @@ const Home = function({
       // router.push("/dashboard");
     }
   }
+
+  function handleSubmit(e){
+    signInWithEmailAndPassword(email, password);
+  }
+
   // <React.Fragment>
   //   {loading && <Loading />}
   // </React.Fragment>
 
-  <Head>
-    <link rel="stylesheet" href="loginstyles.css" type="text/css" /> 
-  </Head>
+  // <Head>  </Head>
 
   return (
     <div>
       {loading && <Loading />}
       <div className="bg-img"></div>
       <div className="header" id="myheader">
-        <a href="page1.html" className="logo">
+        <a className="logo">
           <img src="logo3.png" height="180" width="180" />
         </a>
         <a href="#" className="about">
@@ -94,21 +99,21 @@ const Home = function({
       <div className="vl"></div>
       <div id="login">
         <h1>Member Login</h1>
-        <form method="post">
+        <form onSubmit={ (e) => {e.preventDefault(); handleSubmit(e); }}>
           <div className="username">
-            <input type="text" required />
+            <input type="text" value={email} onChange={setEmail} required />
             <span></span>
             <label id="uid">Username</label>
           </div>
           <div className="username">
-            <input type="password" required />
+            <input type="password" value={password}onChange={setPassword} required />
             <span></span>
             <label id="lbs">Password</label>
           </div>
           <div className="pass">Forgot Password?</div>
           <input type="submit" value="Login" />
           <div className="signup_link">
-            Not a member? <a href="#">SignUp</a>
+            Not a member? <a href="">SignUp</a>
           </div>
         </form>
         <div className="exp1">
@@ -117,34 +122,34 @@ const Home = function({
             At Invisor our mission is to provide people belonging to different
             socio-economic backgrounds with a platform that enables them to gain
             financial independence by increasing litreacy about public equity
-            markets.{" "}
+            markets.
           </p>
         </div>
         <div className="exp2">
           <h3>We would love to hear from you</h3>
           <ul className="socials">
             <li>
-              <a href="#">
+              <a href="">
                 <i className="fa fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="">
                 <i className="fa fa-twitter"></i>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="">
                 <i className="fa fa-google-plus"></i>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="">
                 <i className="fa fa-youtube"></i>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="">
                 <i className="fa fa-linkedin-square"></i>
               </a>
             </li>
