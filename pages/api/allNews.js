@@ -14,7 +14,7 @@ export default async (req, res) => {
 async function getAllNews(stock){
     const nowDate = new Date();
     const todayDate = nowDate.getDate();
-    const newSites = ['twitter', 'reddit', 'yahoo', 'reuters']
+    const newSites = ['yahoo', 'reuters', 'twitter', 'reddit']
     var allNews = [];
     for (let x = 0; x < newSites.length; ++x){
       const res = await fetch(`https://invisor.axemgit2.repl.co/api/${newSites[x]}?stock=${stock}`);
