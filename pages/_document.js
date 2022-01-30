@@ -5,15 +5,13 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                  <title>Invisor - Investment Advisor</title>
-                  <link rel="stylesheet" href="loginstyles.css" type="text/css" />
-                  <link rel="stylesheet" href="dashboardstyles.css" type="text/css" />
-                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
                   <link rel='stylesheet' href="https://fonts.cdnfonts.com/css/comic-neue-angular"/>
                   <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Caudex"/>
                   <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Quicksand"/>
                   <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Comic Neue"/>
-                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>   
+                  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap"/>
+                  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"/>
+                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
                 </Head>
                 <body>
                     <Main />

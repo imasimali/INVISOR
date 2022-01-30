@@ -12,6 +12,7 @@ import withFirebaseAuth, {
 import firebaseConfig from "./firebaseConfig";
 import Link from "next/link";
 
+
 const firebaseApp = !firebase.apps.length
   ? firebase.initializeApp(firebaseConfig)
   : firebase.app();
@@ -27,7 +28,6 @@ const Home = function({
   user,
   error,
   loading,
-  setError,
   signOut,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -37,7 +37,7 @@ const Home = function({
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    // checkUser(user);
+    checkUser(user);
   }, []);
 
   useEffect(() => {
@@ -63,10 +63,16 @@ const Home = function({
   // </React.Fragment>
 
   // <Head>  </Head>
-  console.log(error,user);
+  // console.log(error,user);
 
   return (
     <div>
+      <div>
+          <Head>
+            <title>Invisor - Login Page</title>
+            <link rel="stylesheet" href="/loginstyles.css" type="text/css" />
+          </Head>
+      </div>
       {loading && <Loading />}
       <div className="bg-img"></div>
       <div className="header" id="myheader">
@@ -121,7 +127,6 @@ const Home = function({
             Not a member? <button onClick={ (e) => handleSignup(e) }>SignUp</button>
           </div>
         </form>
-        <button onClick={(e) => signOut()}>sign out</button>
         <div className="exp1">
           <h3> Our Mission </h3>
           <p>
