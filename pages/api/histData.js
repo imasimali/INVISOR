@@ -14,14 +14,16 @@ export default async (req, res) => {
 async function getapiData(stock){
     const nowDate = new Date();
     const todayDate = nowDate.getDate();
-    const res = await fetch(`http://api.marketstack.com/v1/eod?access_key=c2fb428e67bf9232583b7eacc4300cbc&date_from=2022-01-05&date_to=2022-01-${todayDate}&symbols=${stock}`);
+    // Use incase of CORS ERROR https://invisorlink.herokuapp.com/
+    const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${stock}?region=US&lang=en-US&includePrePost=false&interval=1d&useYfid=true&range=15d`);
+    // const res = await fetch(`http://api.marketstack.com/v1/eod?access_key=c2fb428e67bf9232583b7eacc4300cbc&date_from=2022-01-05&date_to=2022-01-${todayDate}&symbols=${stock}`);
     const json = await res.json();
 
-    for (const value of Object.entries(json.data)) {
-      const date = new Date(value[1].date);
-      value[1].date = formatYmd(date);
-    }
-    return json['data']
+    // for (const value of Object.entries(json.chart.result[0].indicators.adjclose[0].adjclose)) {
+    //   const date = new Date(value[1].date);
+    //   value[1].date = formatYmd(date);
+    // }
+    return json.chart.result[0].indicators.adjclose[0].adjclose
   }
 
 function shake_shake(arr) {

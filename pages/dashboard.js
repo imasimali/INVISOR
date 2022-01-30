@@ -25,6 +25,7 @@ const Dashboard = function({
   const [comp_name, setCompName] = useState("Company Name");
   const [comp_price, setCompPrice] = useState("587.65");
   const [prediction, setPrediction] = useState("165.48");
+  const [comp_livedata, setComp_Livedata] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
 
@@ -41,6 +42,15 @@ const Dashboard = function({
     const res = await fetch(`https://c7c3-34-121-53-47.ngrok.io/get?stock=${comp_name}`);
     const json = await res.json();
     setPrediction(json);
+    setIsLoading(false);
+  }
+
+  async function requestPriceData() {
+    setIsLoading(true);
+    const res = await fetch(`https://invisorlink.herokuapp.com/https://query1.finance.yahoo.com/v8/finance/chart/${comp_name}?region=US&lang=en-US&includePrePost=false&interval=1d&useYfid=true&range=15d`);
+    const json = await res.json();
+    setComp_Livedata(json);
+    console.log(comp_livedata)
     setIsLoading(false);
   }
 
@@ -138,7 +148,7 @@ const Dashboard = function({
               placeholder="Search Stock..."
               className="search-input"
             />
-            <a onClick={() => fetchComp()} className="search-btn">
+            <a onClick={() => requestPriceData()} className="search-btn">
               <i className="fas fa-search"></i>
             </a>
           </div>
