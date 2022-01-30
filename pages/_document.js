@@ -5,7 +5,9 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                  <title>Invisor - Investment Advisor</title>
                   <link rel="stylesheet" href="loginstyles.css" type="text/css" />
+                  <link rel="stylesheet" href="dashboardstyles.css" type="text/css" />
                   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
                   <link rel='stylesheet' href="https://fonts.cdnfonts.com/css/comic-neue-angular"/>
                   <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Caudex"/>

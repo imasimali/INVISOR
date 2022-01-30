@@ -46,12 +46,16 @@ const Home = function({
 
   function checkUser(user) {
     if (user != null) {
-      // router.push("/dashboard");
+      router.push("/dashboard");
     }
   }
 
-  function handleSubmit(){
+  function handleLogin(){
     signInWithEmailAndPassword(email, password);
+  }
+
+  function handleSignup(){
+    createUserWithEmailAndPassword(email, password);
   }
 
   // <React.Fragment>
@@ -59,7 +63,7 @@ const Home = function({
   // </React.Fragment>
 
   // <Head>  </Head>
-  console.log(user);
+  console.log(error,user);
 
   return (
     <div>
@@ -100,7 +104,7 @@ const Home = function({
       <div className="vl"></div>
       <div id="login">
         <h1>Member Login</h1>
-        <form onSubmit={ (e) => {e.preventDefault(); handleSubmit(e); }}>
+        <form onSubmit={ (e) => {e.preventDefault(); handleLogin(e); }}>
           <div className="username">
             <input type="text" onChange={(e) => setEmail(e.target.value)} required />
             <span></span>
@@ -114,7 +118,7 @@ const Home = function({
           <div className="pass">Forgot Password?</div>
           <input type="submit" value="Login" />
           <div className="signup_link">
-            Not a member? <a href="">SignUp</a>
+            Not a member? <button onClick={ (e) => handleSignup(e) }>SignUp</button>
           </div>
         </form>
         <button onClick={(e) => signOut()}>sign out</button>
