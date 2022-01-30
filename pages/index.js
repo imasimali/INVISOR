@@ -1,7 +1,8 @@
 import React from 'react';
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import styles from '../styles/Home.module.css';
 import { useEffect, useState } from "react";
 import firebase from 'firebase';
 import UserForm from './UserForm';
@@ -9,15 +10,85 @@ import withFirebaseAuth, {
   WrappedComponentProps,
 } from 'react-with-firebase-auth';
 import firebaseConfig from './firebaseConfig';
+import Dashboard from './dashboard';
+import Link from 'next/link'
 
 const firebaseApp = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
 
-const FormWrapper= ({ children }) => (
+const FormWrapper = ({ children }) => (
   <>
     <div style={{ marginLeft: '1.34em' }}>{children}</div>
     <hr />
   </>
 );
+
+const Home = function({
+  user,
+  error,
+  loading,
+  setError,
+  signOut,
+  signInAnonymously,
+  signInWithEmailAndPassword,
+  signInWithGoogle,
+  signInWithGithub,
+  createUserWithEmailAndPassword,
+}) {
+  const router = useRouter();
+
+  useEffect(() => {
+    // checkUser(user);
+  }, []);
+
+  useEffect(() => {
+    checkUser(user);
+  }, [user]);
+
+  function checkUser(user){
+    if (user != null) {
+      router.push('/dashboard');
+    }
+  }
+
+  return (
+
+    <React.Fragment>
+      {loading && <Loading />}
+      <FormWrapper>
+        <h1>create user</h1>
+        <UserForm onSubmit={createUserWithEmailAndPassword} />
+      </FormWrapper>
+
+      <FormWrapper>
+        <h1>sign in</h1>
+        <UserForm onSubmit={signInWithEmailAndPassword} />
+      </FormWrapper>
+
+      <FormWrapper>
+        <h1>sign out</h1>
+        <button onClick={signOut}>sign out</button>
+      </FormWrapper>
+
+      <FormWrapper>
+        <h1>clear error</h1>
+        <button onClick={() => setError(null)}>clear error</button>
+      </FormWrapper>
+
+      <FormWrapper>
+        <h1>user data</h1>
+        <textarea
+          style={{ width: 350, height: 200 }}
+          value={JSON.stringify(user, null, 2)}
+        />
+      </FormWrapper>
+
+      <FormWrapper>
+        <h1>error data</h1>
+        <textarea style={{ width: 350, height: 200 }} value={error} />
+      </FormWrapper>
+    </React.Fragment>
+  )
+}
 
 const Loading = () => (
   <div
@@ -35,82 +106,6 @@ const Loading = () => (
     Loading..
   </div>
 );
-
-const Home = function ({
-  user,
-  error,
-  loading,
-  setError,
-  signOut,
-  signInAnonymously,
-  signInWithEmailAndPassword,
-  signInWithGoogle,
-  signInWithGithub,
-  createUserWithEmailAndPassword,
-}) {
-  
-  return (
-    <React.Fragment>
-    {loading && <Loading />}
-
-    <FormWrapper>
-      <h1>react-with-firebase-auth</h1>
-      <h3>a very simple demo showing it in action</h3>
-      <h3>see user data and errors in the end of this page</h3>
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>create user</h1>
-      <UserForm onSubmit={createUserWithEmailAndPassword} />
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>sign in</h1>
-      <UserForm onSubmit={signInWithEmailAndPassword} />
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>sign in with google</h1>
-      <button onClick={signInWithGoogle}>sign in with google</button>
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>sign in with github</h1>
-      <h3>(no provider setup, good to see error message)</h3>
-      <button onClick={signInWithGithub}>sign in with github</button>
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>sign in anonymously</h1>
-      <h3>(failing due to permissions, good to see error message)</h3>
-      <button onClick={signInAnonymously}>sign in anonymously</button>
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>sign out</h1>
-      <button onClick={signOut}>sign out</button>
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>clear error</h1>
-      <button onClick={() => setError(null)}>clear error</button>
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>user data</h1>
-      <textarea
-        style={{ width: 350, height: 200 }}
-        value={JSON.stringify(user, null, 2)}
-      />
-    </FormWrapper>
-
-    <FormWrapper>
-      <h1>error data</h1>
-      <textarea style={{ width: 350, height: 200 }} value={error} />
-    </FormWrapper>
-  </React.Fragment>
-  )
-}
 
 const firebaseAppAuth = firebaseApp.auth();
 
