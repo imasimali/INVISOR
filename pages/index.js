@@ -28,10 +28,7 @@ const Home = function({
   loading,
   setError,
   signOut,
-  signInAnonymously,
   signInWithEmailAndPassword,
-  signInWithGoogle,
-  signInWithGithub,
   createUserWithEmailAndPassword,
 }) {
   const router = useRouter();
