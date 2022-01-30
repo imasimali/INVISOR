@@ -312,7 +312,7 @@ position: absolute;
 width:60%;
 height: 10%;
 left:20%;
-top: 10%;
+top: 13%;
 /* background-color: yellow; */
 font-family: Comic Neue;
 font-style: normal;
@@ -580,7 +580,7 @@ button{
 }
 .search-container{
   padding: 1%;
-  margin: 8% 20%;
+  margin: 6% 20%;
 }
 
 .search-container:hover > .search-input{

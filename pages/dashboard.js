@@ -22,6 +22,12 @@ const Dashboard = function({
   signOut,
 }) {
   const router = useRouter();
+  const [comp_name, setCompName] = useState("Company Name");
+  const [comp_price, setCompPrice] = useState("587.65");
+  const [prediction, setPrediction] = useState("165.48");
+  const [isLoading, setIsLoading] = useState(false);
+
+
   useEffect(() => {
     checkUser(user);
   }, []);
@@ -30,10 +36,23 @@ const Dashboard = function({
     checkUser(user);
   }, [user]);
 
+  async function requestPrediction() {
+    setIsLoading(true);
+    const res = await fetch(`https://c7c3-34-121-53-47.ngrok.io/get?stock=${comp_name}`);
+    const json = await res.json();
+    setPrediction(json);
+    setIsLoading(false);
+  }
+
   function checkUser(user) {
     if (user === null) {
       router.push("/");
     }
+  }
+
+  function fetchComp(){
+    console.log("Serach :",comp_name);
+    requestPrediction();
   }
 
   return (
@@ -113,20 +132,23 @@ const Dashboard = function({
           <div className="search-container">
             <input
               type="text"
+              value={comp_name}
+              onChange={(e) => setCompName(e.target.value)}
               name="search"
               placeholder="Search Stock..."
               className="search-input"
             />
-            <a href="#" className="search-btn">
-              <i className="fas fa-search"></i>{" "}
+            <a onClick={() => fetchComp()} className="search-btn">
+              <i className="fas fa-search"></i>
             </a>
           </div>
 
           <div className="comp_details">
-            <a id="descp1" href="#">
+            <p id="comp"> {comp_name}</p>
+            <a id="descp1" href={`https://finance.yahoo.com/quote/${comp_name}`}>
               You can find all the details about the company here!
             </a>
-            <p id="amnt">$ ___</p>
+            <p id="amnt">$ {comp_price}</p>
             <p id="val">Current Value</p>
           </div>
           <div className="rect">
@@ -149,7 +171,11 @@ const Dashboard = function({
             </p>
             <p id="graph3"></p>
             <h2 className="pred">Prediction Result</h2>
-            <p className="res">Next PRICE will be___</p>
+            {isLoading ? (
+              <p className="res">Predicting next price ...</p>
+            ) : (
+            <p className="res">Next PRICE will be ${prediction}</p>
+            )}
           </div>
         </div>
       </div>
