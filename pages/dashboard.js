@@ -87,7 +87,7 @@ const Dashboard = function({
 
   async function getMongo() {
     const res = await fetch(
-      `/api/mongo?stock=${comp_name}`
+      `/api/mongo?stock=AAPL`
     );
     const json = await res.json()
     let data = json.map((obj) => {
@@ -95,6 +95,7 @@ const Dashboard = function({
       obj.date = new Date(date)
       return obj
     })
+    requestLastPrice()
     setChartData(data)
   }
 
@@ -213,13 +214,13 @@ const Dashboard = function({
             </button>
           </div>
           <div id="graphs">
-            <p id="graph1">
+            <div id="graph1">
               {chartData != null ?
                 <TypeChooser>
                   {type => <Chart type={type} data={chartData} />}
                 </TypeChooser>
-              : <> Loading Chart </>}
-            </p>
+              : <>  Loading Chart </>}
+            </div>
             {/*<p id="graph2"></p>*/}
             <p id="trend">
               Trending Stocks
