@@ -312,7 +312,7 @@ position: absolute;
 width:60%;
 height: 10%;
 left:20%;
-top: 13%;
+top: 10%;
 /* background-color: yellow; */
 font-family: Comic Neue;
 font-style: normal;
@@ -398,14 +398,14 @@ font-size: 13.5px;
 #graph1{
 position: absolute;
 width: 50%;
-height:65%;
+height:45%;
 left: 20%;
-top: 35%;
+top: 30%;
 /* background-color: yellow; */
 color: rgb(243, 237, 179);
 filter: drop-shadow(0px 16px 24px rgba(0, 0, 0, 0.06)) drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.04)) drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.04));
 border-radius: 28px; 
-border: 1px solid;
+border: 2px solid;
 
 }
 /* .meter{
@@ -468,11 +468,11 @@ top: 78%;
 #graph3{
 position: absolute;
 width: 24%;
-height:55%;
+height:40%;
 left: 73%;
 top: 83%;
 color:rgb(243, 237, 179);
-border: 1px solid;
+border: 2px solid;
 border-radius: 20px;
 }
 
@@ -485,7 +485,7 @@ position: absolute;
 width: 50%;
 height:8%;
 left: 20%;
-top: 110%;
+top: 80%;
 font-family: 'Comic Neue Angular 700', sans-serif;
 font-style: normal;
 font-weight: bold;
@@ -580,7 +580,7 @@ button{
 }
 .search-container{
   padding: 1%;
-  margin: 6% 20%;
+  margin: 8% 20%;
 }
 
 .search-container:hover > .search-input{
@@ -620,7 +620,7 @@ footer{
     /* bottom: 0; */
     left: 0;
     right: 0;
-    top: 142.5%;
+    top: 130%;
     background: rgb(5, 5, 5);
     height: auto;
     width: 100vw;

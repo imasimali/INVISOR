@@ -26,8 +26,8 @@ const Dashboard = function({
   signOut,
 }) {
   const router = useRouter();
-  const [comp_name, setCompName] = useState("Company Name");
-  const [comp_price, setCompPrice] = useState("587.65");
+  const [comp_name, setCompName] = useState("AAPL");
+  const [comp_price, setCompPrice] = useState("163.78");
   const [prediction, setPrediction] = useState("165.48");
   const [comp_livedata, setComp_Livedata] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +36,7 @@ const Dashboard = function({
 
   useEffect(() => {
     checkUser(user);
+    // requestLastPrice();
   }, []);
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const Dashboard = function({
   async function chart(){
     getData().then(data => {
 			setChartData(data)
+      console.log(chartData)
 		})
   }
 
@@ -65,6 +67,14 @@ const Dashboard = function({
     setIsLoading(false);
   }
 
+  async function requestLastPrice() {
+    setIsLoading(true);
+    const res = await fetch(`/api/lastprice?stock=${comp_name}`);
+    const json = await res.json();
+    setCompPrice(json);
+    setIsLoading(false);
+  }
+
   function checkUser(user) {
     if (user === null) {
       router.push("/");
@@ -76,7 +86,7 @@ const Dashboard = function({
     requestPrediction();
   }
 
-  console.log(chartData)
+  // console.log(chartData)
 
   return (
     <div>

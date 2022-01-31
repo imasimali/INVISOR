@@ -80,13 +80,13 @@ class LineAndScatterChart extends React.Component {
 						yAccessor={d => d.AAPLClose}
 						marker={SquareMarker}
 						markerProps={{ width: 6, stroke: "#ff7f0e", fill: "#ff7f0e" }} />
-					<LineSeries
+					{/*<LineSeries
 						yAccessor={d => d.GEClose}
 						stroke="#2ca02c" />
 					<ScatterSeries
 						yAccessor={d => d.GEClose}
 						marker={TriangleMarker}
-						markerProps={{ width: 8, stroke: "#2ca02c", fill: "#2ca02c" }} />
+						markerProps={{ width: 8, stroke: "#2ca02c", fill: "#2ca02c" }} />*/}
 					<LineSeries
 						yAccessor={d => d.close}
 						strokeDasharray="LongDash" />
