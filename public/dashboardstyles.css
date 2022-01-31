@@ -312,7 +312,7 @@ position: absolute;
 width:60%;
 height: 10%;
 left:20%;
-top: 10%;
+top: 13%;
 /* background-color: yellow; */
 font-family: Comic Neue;
 font-style: normal;
@@ -327,7 +327,7 @@ position: absolute;
 width: 50%;
 height:15%;
 left: 18%;
-top: 114%;
+top: 95%;
 font-family: Caudex;
 /* background-color: yellow; */
 font-style: normal;
@@ -434,7 +434,7 @@ border-radius: 20px;
 position: absolute;
 width: 25%;
 height:3%;
-left: 73%;
+left: 74%;
   font-family:Comic Neue;
   font-style: bold;
   font-weight: 600;
@@ -580,7 +580,7 @@ button{
 }
 .search-container{
   padding: 1%;
-  margin: 8% 20%;
+  margin: 6% 20%;
 }
 
 .search-container:hover > .search-input{
