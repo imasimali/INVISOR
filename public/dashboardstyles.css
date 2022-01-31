@@ -44,7 +44,7 @@ left: 60%;
 position: absolute;
 max-width: 8%;
 min-width: 8%;
-top: -3%;
+top: 15%;
 height: 52%;
 margin-left: 10%;
 }
@@ -312,7 +312,7 @@ position: absolute;
 width:60%;
 height: 10%;
 left:20%;
-top: 13%;
+top: 15%;
 /* background-color: yellow; */
 font-family: Comic Neue;
 font-style: normal;

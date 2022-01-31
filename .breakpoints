@@ -1,5 +1,13 @@
 {
   "files": {
+    ".replit": [
+      {
+        "id": "0b9cb4fc-a8d3-4fec-bb8d-90a8fdd15bf1",
+        "line": 2,
+        "version": 1,
+        "index": 20
+      }
+    ],
     "pages/_app.js": [
       {
         "id": "74c8e745-60d2-4e51-9d22-23c967c121d1",

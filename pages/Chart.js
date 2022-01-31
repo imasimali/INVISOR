@@ -38,10 +38,9 @@ class LineAndScatterChart extends React.Component {
 			xAccessor,
 			displayXAccessor,
 		} = xScaleProvider(initialData);
-		const xExtents = [
-			xAccessor(last(data)),
-			xAccessor(data[data.length - 20])
-		];
+    const start = xAccessor(last(data));
+		const end = xAccessor(data[Math.max(0, data.length - 150)]);
+		const xExtents = [start, end];
 		return (
 			<ChartCanvas ratio={ratio} width={width} height={400}
 					margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
@@ -54,7 +53,7 @@ class LineAndScatterChart extends React.Component {
 					xScale={xScale}
 					xExtents={xExtents}>
 				<Chart id={1}
-						yExtents={d => [d.high, d.low, d.AAPLClose, d.GEClose]}>
+						yExtents={d => [d.close, d.pred]}>
 					<XAxis axisAt="bottom" orient="bottom"/>
 					<YAxis
 						axisAt="right"
@@ -73,25 +72,18 @@ class LineAndScatterChart extends React.Component {
 						displayFormat={format(".2f")} />
 
 					<LineSeries
-						yAccessor={d => d.AAPLClose}
+						yAccessor={d => d.close}
 						stroke="#ff7f0e"
 						strokeDasharray="Dot" />
 					<ScatterSeries
-						yAccessor={d => d.AAPLClose}
+						yAccessor={d => d.close}
 						marker={SquareMarker}
 						markerProps={{ width: 6, stroke: "#ff7f0e", fill: "#ff7f0e" }} />
-					{/*<LineSeries
-						yAccessor={d => d.GEClose}
-						stroke="#2ca02c" />
-					<ScatterSeries
-						yAccessor={d => d.GEClose}
-						marker={TriangleMarker}
-						markerProps={{ width: 8, stroke: "#2ca02c", fill: "#2ca02c" }} />*/}
 					<LineSeries
-						yAccessor={d => d.close}
+						yAccessor={d => d.pred}
 						strokeDasharray="LongDash" />
 					<ScatterSeries
-						yAccessor={d => d.close}
+						yAccessor={d => d.pred}
 						marker={CircleMarker}
 						markerProps={{ r: 3 }} />
 					<OHLCTooltip forChart={1} origin={[-40, 0]}/>

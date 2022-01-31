@@ -43,13 +43,6 @@ const Dashboard = function({
     checkUser(user);
   }, [user]);
 
-  async function chart(){
-    getData().then(data => {
-			setChartData(data)
-      console.log(chartData)
-		})
-  }
-
   async function requestPrediction() {
     setIsLoading(true);
     const res = await fetch(`https://1800-34-73-85-57.ngrok.io/get?stock=${comp_name}`);
@@ -73,6 +66,36 @@ const Dashboard = function({
     const json = await res.json();
     setCompPrice(json);
     setIsLoading(false);
+  }
+
+  async function sendMongo(event) {
+    const data = new FormData(event.target);
+
+    const result = await fetch(`/api/mongo?stock=${comp_name}`, {
+      method: "POST",
+      body: JSON.stringify({
+        symbol: data.symbol,
+        close: data.close,
+        pred: data.pred,
+        date: data.date,
+      }),
+    })
+      .then((response) => {
+          console.log(response.status)
+      })
+  }
+
+  async function getMongo() {
+    const res = await fetch(
+      `/api/mongo?stock=${comp_name}`
+    );
+    const json = await res.json()
+    let data = json.map((obj) => {
+      let date = obj.date //+ 'T05:00:00.000Z'
+      obj.date = new Date(date)
+      return obj
+    })
+    setChartData(data)
   }
 
   function checkUser(user) {
@@ -171,7 +194,7 @@ const Dashboard = function({
               placeholder="Search Stock..."
               className="search-input"
             />
-            <a onClick={() => chart()} className="search-btn">
+            <a onClick={() => getMongo()} className="search-btn">
               <i className="fas fa-search"></i>
             </a>
           </div>
@@ -213,7 +236,7 @@ const Dashboard = function({
             {isLoading ? (
               <p className="res">Predicting next price ...</p>
             ) : (
-            <p className="res">Next PRICE will be ${prediction}</p>
+            <p className="res">Next Price will be ${prediction}</p>
             )}
           </div>
         </div>
