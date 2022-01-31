@@ -10,6 +10,10 @@ import withFirebaseAuth, {
   WrappedComponentProps,
 } from 'react-with-firebase-auth';
 import firebaseConfig from "./firebaseConfig";
+import Chart from './Chart';
+import { getData } from "./utils"
+
+import { TypeChooser } from "react-stockcharts/lib/helper";
 
 const firebaseApp = !firebase.apps.length
   ? firebase.initializeApp(firebaseConfig)
@@ -27,6 +31,7 @@ const Dashboard = function({
   const [prediction, setPrediction] = useState("165.48");
   const [comp_livedata, setComp_Livedata] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [chartData, setChartData] = useState(null);
 
 
   useEffect(() => {
@@ -37,9 +42,15 @@ const Dashboard = function({
     checkUser(user);
   }, [user]);
 
+  async function chart(){
+    getData().then(data => {
+			setChartData(data)
+		})
+  }
+
   async function requestPrediction() {
     setIsLoading(true);
-    const res = await fetch(`https://c7c3-34-121-53-47.ngrok.io/get?stock=${comp_name}`);
+    const res = await fetch(`https://1800-34-73-85-57.ngrok.io/get?stock=${comp_name}`);
     const json = await res.json();
     setPrediction(json);
     setIsLoading(false);
@@ -64,6 +75,8 @@ const Dashboard = function({
     console.log("Serach :",comp_name);
     requestPrediction();
   }
+
+  console.log(chartData)
 
   return (
     <div>
@@ -148,7 +161,7 @@ const Dashboard = function({
               placeholder="Search Stock..."
               className="search-input"
             />
-            <a onClick={() => requestPriceData()} className="search-btn">
+            <a onClick={() => chart()} className="search-btn">
               <i className="fas fa-search"></i>
             </a>
           </div>
@@ -167,8 +180,14 @@ const Dashboard = function({
             </button>
           </div>
           <div id="graphs">
-            <p id="graph1"></p>
-            <p id="graph2"></p>
+            <p id="graph1">
+              {chartData != null ?
+                <TypeChooser>
+                  {type => <Chart type={type} data={chartData} />}
+                </TypeChooser>
+              : <> Loading Chart </>}
+            </p>
+            {/*<p id="graph2"></p>*/}
             <p id="trend">
               Trending Stocks
               <a
@@ -179,7 +198,7 @@ const Dashboard = function({
                 View All
               </a>
             </p>
-            <p id="graph3"></p>
+            {/*<p id="graph3"></p>*/}
             <h2 className="pred">Prediction Result</h2>
             {isLoading ? (
               <p className="res">Predicting next price ...</p>
