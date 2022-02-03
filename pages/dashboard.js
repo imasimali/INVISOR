@@ -221,7 +221,16 @@ const Dashboard = function({
                 </TypeChooser>
               : <>  Loading Chart </>}
             </div>
-            {/*<p id="graph2"></p>*/}
+            <div id="graph2">
+              <p id="open">Open</p>
+              <p id="oamt">164.34</p>
+              <p id="high">High</p>
+              <p id="hamt">166.34</p>
+              <p id="low">Low</p>
+              <p id="lamt">161.34</p>
+              <p id="close">Close</p>
+              <p id="camt">163.34</p>
+            </div>
             <p id="trend">
               Trending Stocks
               <a
@@ -232,7 +241,7 @@ const Dashboard = function({
                 View All
               </a>
             </p>
-            {/*<p id="graph3"></p>*/}
+            <div id="graph3"></div>
             <h2 className="pred">Prediction Result</h2>
             {isLoading ? (
               <p className="res">Predicting next price ...</p>

@@ -327,7 +327,7 @@ position: absolute;
 width: 50%;
 height:15%;
 left: 18%;
-top: 95%;
+top: 85%;
 font-family: Caudex;
 /* background-color: yellow; */
 font-style: normal;
@@ -424,22 +424,23 @@ color: rgb(212, 204, 126);
 /* background-color: rgb(139, 139, 18); */
 position: absolute;
 width: 24%;
-height:45%;
+height:32%;
 left: 73%;
 top: 30%;
 border: 1px solid;
 border-radius: 20px;
 }
+
 #trend{
 position: absolute;
 width: 25%;
 height:3%;
 left: 74%;
-  font-family:Comic Neue;
-  font-style: bold;
-  font-weight: 600;
+font-family:Comic Neue;
+font-style: bold;
+font-weight: 600;
 /* background-color: yellow; */
-top: 78%;
+top: 62%;
 }
 #vew{
   color: rgb(23, 139, 23);
@@ -468,9 +469,9 @@ top: 78%;
 #graph3{
 position: absolute;
 width: 24%;
-height:40%;
+height:30%;
 left: 73%;
-top: 83%;
+top: 68%;
 color:rgb(243, 237, 179);
 border: 2px solid;
 border-radius: 20px;
@@ -620,7 +621,7 @@ footer{
     /* bottom: 0; */
     left: 0;
     right: 0;
-    top: 130%;
+    top: 100%;
     background: rgb(5, 5, 5);
     height: auto;
     width: 100vw;
@@ -717,4 +718,86 @@ display: block;
 
 .footer-menu ul li a:hover{
   color: #27bcda;
+}
+
+#open{
+  color: rgb(212, 204, 126);
+  width: 70%;
+  font-size: 22px;
+  padding-left: 20px;
+  /* background-color: green; */
+  float: left;
+  position: relative;
+  /* display: inline-block; */
+}
+#oamt{
+    /* other styles goes here... */
+    /* top: 15%; */
+    display: inline-block;
+    /* padding-right: 10px; */
+    /* background-color: yellow; */
+    width: 20%;
+    font-size: 20px;
+    /* float: right; */
+    /* vertical-align: top; */
+}
+#high{
+  color: rgb(212, 204, 126);
+  width: 70%;
+  font-size: 22px;
+  padding-left: 20px;
+  float: left;
+  /* background-color: green; */
+  /* display: inline-flex; */
+  position: relative;
+}
+#hamt{
+    /* other styles goes here... */
+    display: inline-block;
+    /* padding-right: 10px; */
+    /* background-color: yellow; */
+    width: 20%;
+    font-size: 20px;
+    /* float: right; */
+    /* vertical-align: top; */
+}
+#low{
+  color: rgb(212, 204, 126);
+  width: 70%;
+  font-size: 22px;
+  padding-left: 20px;
+  float: left;
+  position: relative;
+  /* float: left; */
+  /* display: inline-flex; */
+}
+#lamt{
+    /* other styles goes here... */
+    display: inline-block;
+    /* padding-right: 10px; */
+    /* background-color: yellow; */
+    width: 20%;
+    font-size: 20px;
+    /* float: right; */
+    /* vertical-align: top; */
+}
+#close{
+  color: rgb(212, 204, 126);
+  width: 70%;
+  font-size: 22px;
+  padding-left: 20px;
+  float: left;
+  position: relative;
+  /* float: left; */
+  /* display: inline-flex; */
+}
+#camt{
+    /* other styles goes here... */
+    display: inline-block;
+    /* padding-right: 10px; */
+    /* background-color: yellow; */
+    width: 20%;
+    font-size: 20px;
+    /* float: right; */
+    /* vertical-align: top; */
 }
