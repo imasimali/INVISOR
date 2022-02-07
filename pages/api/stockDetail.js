@@ -15,24 +15,15 @@ async function getapiData(stock){
     const nowDate = new Date();
     const todayDate = nowDate.getDate();
     // Use incase of CORS ERROR https://invisorlink.herokuapp.com/
-    const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${stock}?region=US&lang=en-US&includePrePost=false&interval=1d&useYfid=true&range=20d`);
+    const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${stock}?region=US&lang=en-US&includePrePost=false&interval=1d&useYfid=true&range=1d`);
     // const res = await fetch(`http://api.marketstack.com/v1/eod?access_key=c2fb428e67bf9232583b7eacc4300cbc&date_from=2022-01-05&date_to=2022-01-${todayDate}&symbols=${stock}`);
     const json = await res.json();
 
-    // for (const value of Object.entries(json.chart.result[0].indicators.adjclose[0].adjclose)) {
+    for (const value of Object.entries(json.chart.result[0].indicators.quote[0])) {
       // const date = new Date(value[1].date);
-      // value[1].date = formatYmd(date);
-      // value[1] == null ? value[1] = await requestLastPrice(stock) : null;
-      // console.log(value[1])
-    // }
-    
-    return json.chart.result[0].indicators.adjclose[0].adjclose.filter(Number).slice(5,20)
-  }
-
-async function requestLastPrice(stock) {
-    const res = await fetch(`https://invisor.ml/api/lastprice?stock=${stock}`);
-    const json = await res.json();
-    return json
+      value[1][0] = value[1][0].toString().slice(0, 6);
+    }
+    return json.chart.result[0].indicators.quote[0]
   }
 
 function shake_shake(arr) {

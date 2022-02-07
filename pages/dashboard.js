@@ -33,6 +33,11 @@ const Dashboard = function({
   const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState(null);
 
+  const [comp_open, setCompOpen] = useState("Loading..");
+  const [comp_high, setCompHigh] = useState("Loading..");
+  const [comp_low, setCompLow] = useState("Loading..");
+  const [comp_close, setCompClose] = useState("Loading..");
+
 
   useEffect(() => {
     checkUser(user);
@@ -43,9 +48,28 @@ const Dashboard = function({
     checkUser(user);
   }, [user]);
 
+  async function DOIT() {
+    setIsLoading(true);
+    // const res = await fetch(`https://cfb5-34-91-153-13.ngrok.io/get?stock=${comp_name}`);
+    // const json = await res.json();
+    requestDetails();
+    setIsLoading(false);
+  }
+
+  async function requestDetails() {
+    setIsLoading(true);
+    const res = await fetch(`/api/stockDetail?stock=${comp_name}`);
+    const json = await res.json();
+    setCompOpen(json.open[0]);
+    setCompHigh(json.high[0]);
+    setCompLow(json.low[0]);
+    setCompClose(json.close[0]);
+    setIsLoading(false);
+  }
+
   async function requestPrediction() {
     setIsLoading(true);
-    const res = await fetch(`https://1800-34-73-85-57.ngrok.io/get?stock=${comp_name}`);
+    const res = await fetch(`https://cfb5-34-91-153-13.ngrok.io/get?stock=${comp_name}`);
     const json = await res.json();
     setPrediction(json);
     setIsLoading(false);
@@ -195,7 +219,7 @@ const Dashboard = function({
               placeholder="Search Stock..."
               className="search-input"
             />
-            <a onClick={() => getMongo()} className="search-btn">
+            <a onClick={() => DOIT()} className="search-btn">
               <i className="fas fa-search"></i>
             </a>
           </div>
@@ -223,13 +247,13 @@ const Dashboard = function({
             </div>
             <div id="graph2">
               <p id="open">Open</p>
-              <p id="oamt">164.34</p>
+              <p id="oamt">{comp_open}</p>
               <p id="high">High</p>
-              <p id="hamt">166.34</p>
+              <p id="hamt">{comp_high}</p>
               <p id="low">Low</p>
-              <p id="lamt">161.34</p>
+              <p id="lamt">{comp_low}</p>
               <p id="close">Close</p>
-              <p id="camt">163.34</p>
+              <p id="camt">{comp_close}</p>
             </div>
             <p id="trend">
               Trending Stocks
@@ -241,7 +265,58 @@ const Dashboard = function({
                 View All
               </a>
             </p>
-            <div id="graph3"></div>
+            <div id="graph3">
+              <table id="ttrend">
+              <thead>
+                <tr id="thead">
+                  <th id="serial">#</th>
+                  <th id="tname">Name</th>
+                  <th id="tprice">Price/unit</th>
+                  <th id="treturn">Return</th>
+                </tr>
+              </thead>
+              </table>
+              <table id="ttrend2" style={{width:'97%', color: 'black'}}>
+              <tbody>
+                <tr id="row1">
+                  <td>1</td>
+                  <td id="tcomp1">Apple</td>
+                  <td id="tprice1">$172.5</td>
+                  <td className="tsame" id="treturn1">+4.28</td>
+                </tr>
+                <tr id="row2">
+                  <td>2</td>
+                  <td id="tcomp2">IBM</td>
+                  <td id="tprice2">$137.53</td>
+                  <td className="tsame" id="treturn2">+3.19</td>
+                </tr>
+                <tr id="row3">
+                  <td>3</td>
+                  <td id="tcomp3">P&G</td>
+                  <td id="tprice3">$160.92</td>
+                  <td className="tsame" id="treturn3">-3.12</td>
+                </tr>
+                <tr id="row4">
+                  <td>4</td>
+                  <td id="tcomp4">Netflix</td>
+                  <td id="tprice4">$399.52</td>
+                  <td className="tsame" id="treturn4">+2.40</td>
+                </tr>
+                <tr id="row5">
+                  <td>5</td>
+                  <td id="tcomp5">Meta</td>
+                  <td id="tprice5">$225.90</td>
+                  <td className="tsame" id="treturn5">-7.89</td>
+                </tr>
+                <tr id="row6">
+                  <td>6</td>
+                  <td id="tcomp6">Amazon</td>
+                  <td id="tprice6">$3,175.80</td>
+                  <td className="tsame" id="treturn6">+1.29</td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
             <h2 className="pred">Prediction Result</h2>
             {isLoading ? (
               <p className="res">Predicting next price ...</p>

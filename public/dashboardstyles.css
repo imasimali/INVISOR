@@ -420,14 +420,14 @@ top: 115%;
 transform: rotate(90deg);
 } */
 #graph2{
-color: rgb(212, 204, 126);
+color: #000000 !important;
 /* background-color: rgb(139, 139, 18); */
 position: absolute;
 width: 24%;
 height:32%;
 left: 73%;
 top: 30%;
-border: 1px solid;
+border: 1px solid rgb(212, 204, 126);
 border-radius: 20px;
 }
 
@@ -469,7 +469,7 @@ top: 62%;
 #graph3{
 position: absolute;
 width: 24%;
-height:30%;
+height:31%;
 left: 73%;
 top: 68%;
 color:rgb(243, 237, 179);
@@ -721,7 +721,7 @@ display: block;
 }
 
 #open{
-  color: rgb(212, 204, 126);
+  color: #000000;
   width: 70%;
   font-size: 22px;
   padding-left: 20px;
@@ -742,7 +742,7 @@ display: block;
     /* vertical-align: top; */
 }
 #high{
-  color: rgb(212, 204, 126);
+  color: #000000;
   width: 70%;
   font-size: 22px;
   padding-left: 20px;
@@ -762,7 +762,7 @@ display: block;
     /* vertical-align: top; */
 }
 #low{
-  color: rgb(212, 204, 126);
+  color: #000000;
   width: 70%;
   font-size: 22px;
   padding-left: 20px;
@@ -782,7 +782,7 @@ display: block;
     /* vertical-align: top; */
 }
 #close{
-  color: rgb(212, 204, 126);
+  color: #000000;
   width: 70%;
   font-size: 22px;
   padding-left: 20px;
@@ -800,4 +800,58 @@ display: block;
     font-size: 20px;
     /* float: right; */
     /* vertical-align: top; */
+}
+#ttrend{
+  /* color: rgb(94, 94, 73); */
+  /* background-color: yellow; */
+  width:95%;
+  background-color: rgb(233, 233, 215);
+  color: 'black';
+  position: relative;
+  top: 5px;
+  left: 8px;
+  /* height: 60%; */
+  border-radius: 7px;
+  font-family: Quicksand;
+  font-size: 15px;
+}
+
+th{
+  color: #000000;
+  /* padding: 4px; */
+  /* padding-top: 3px; */ 
+  /* border-radius: 3px;
+  position: relative;
+  left: 5px;
+  top: 5px; */
+}
+tbody tr{
+  text-align: center;
+  padding: 4px;
+  /* padding-top:10px;  */
+  position: relative;
+  top: 10px;
+}
+.tsame{
+  /* color: rgb(2, 141, 2); */
+  font-weight: 500;
+  font-display: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#ttrend2 td{
+  font-family: Quicksand;
+  /* color: yellow; */
+  
+  text-align: center;
+  position: relative;
+  margin-top: 10%;
+  /* background-color: green; */
+}
+table{
+  border-spacing: 0 15px;
+}
+
+#graphs{
+  color: 'black' !important;
 }

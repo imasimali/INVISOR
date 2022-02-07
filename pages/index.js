@@ -50,11 +50,11 @@ const Home = function({
     }
   }
 
-  function handleLogin(){
+  function handleLogin() {
     signInWithEmailAndPassword(email, password);
   }
 
-  function handleSignup(){
+  function handleSignup() {
     createUserWithEmailAndPassword(email, password);
   }
 
@@ -67,11 +67,11 @@ const Home = function({
 
   return (
     <div>
-      <div>
-          <Head>
-            <title>Invisor - Login Page</title>
-            <link rel="stylesheet" href="/loginstyles.css" type="text/css" />
-          </Head>
+      <div style={{ display: 'flex', 'justify-content': 'center !important' }}>
+        <Head>
+          <title>Invisor - Login Page</title>
+          <link rel="stylesheet" href="/loginstyles.css" type="text/css" />
+        </Head>
       </div>
       {loading && <Loading />}
       <div className="bg-img"></div>
@@ -110,7 +110,7 @@ const Home = function({
       <div className="vl"></div>
       <div id="login">
         <h1>Member Login</h1>
-        <form onSubmit={ (e) => {e.preventDefault(); handleLogin(e); }}>
+        <form onSubmit={(e) => { e.preventDefault(); handleLogin(e); }}>
           <div className="username">
             <input type="text" onChange={(e) => setEmail(e.target.value)} required />
             <span></span>
@@ -124,7 +124,7 @@ const Home = function({
           <div className="pass">Forgot Password?</div>
           <input type="submit" value="Login" />
           <div className="signup_link">
-            Not a member? <button onClick={ (e) => handleSignup(e) }>SignUp</button>
+            Not a member? <button onClick={(e) => handleSignup(e)}>SignUp</button>
           </div>
         </form>
         <div className="exp1">
@@ -165,6 +165,25 @@ const Home = function({
               </a>
             </li>
           </ul>
+        </div>
+        <div class="teams" id="myteam">
+          <h3>Meet the brains behind Invisor</h3>
+        </div>
+        <div class="caption">
+          <h3>Asim Ali (Developer)</h3>
+          <h3 class="isa">Isaac Opher Ullah (Developer)</h3>
+        </div>
+        <div class="exp3" id="team">
+          <img src="asim.jpg" height="280" width="240" />
+          <img src="isaacc.jpg" height="280" width="240" />
+        </div>
+        <div class="caption2">
+          <h3>Ghulam Mustafa Bajwa (Developer)</h3>
+          <h3>Anmool Yarmiah (Developer)</h3>
+        </div>
+        <div class="exp4">
+          <img src="bajwaa.jpg" height="270" width="270" />
+          <img src="anmoll.jpg" height="270" width="280" />
         </div>
       </div>
     </div>
