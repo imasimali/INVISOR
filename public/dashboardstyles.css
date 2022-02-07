@@ -369,9 +369,9 @@ color: #AEAEAE;
 /*Watchlist div */
 .rect{
 position: absolute;
-width: 10%;
+width: 8.5%;
 max-width: 10%;
-height: 6%;
+height: 5%;
 left: 75%;
 top: 18%;
 min-width: 8%;
@@ -387,8 +387,9 @@ font-size: 13.5px;
   margin-top: 10px;
   /* padding-top: 5px; */
   margin-left: 2px;
-  font-size: 13px;
+  font-size: 18px;
 }
+
 .watch:hover{
   transform: scaleX(1);
   transform-origin: left;
@@ -731,15 +732,16 @@ display: block;
   /* display: inline-block; */
 }
 #oamt{
-    /* other styles goes here... */
-    /* top: 15%; */
-    display: inline-block;
-    /* padding-right: 10px; */
-    /* background-color: yellow; */
-    width: 20%;
-    font-size: 20px;
-    /* float: right; */
-    /* vertical-align: top; */
+  position: relative;
+  /* other styles goes here... */
+  /* top: 15%; */
+  display: inline-block;
+  /* padding-right: 10px; */
+  /* background-color: yellow; */
+  width: 20%;
+  font-size: 22px;
+  /* float: right; */
+  /* vertical-align: top; */
 }
 #high{
   color: #000000;
@@ -752,14 +754,15 @@ display: block;
   position: relative;
 }
 #hamt{
-    /* other styles goes here... */
-    display: inline-block;
-    /* padding-right: 10px; */
-    /* background-color: yellow; */
-    width: 20%;
-    font-size: 20px;
-    /* float: right; */
-    /* vertical-align: top; */
+  position: relative;
+  /* other styles goes here... */
+  display: inline-block;
+  /* padding-right: 10px; */
+  /* background-color: yellow; */
+  width: 20%;
+  font-size: 22px;
+  /* float: right; */
+  /* vertical-align: top; */
 }
 #low{
   color: #000000;
@@ -772,14 +775,15 @@ display: block;
   /* display: inline-flex; */
 }
 #lamt{
-    /* other styles goes here... */
-    display: inline-block;
-    /* padding-right: 10px; */
-    /* background-color: yellow; */
-    width: 20%;
-    font-size: 20px;
-    /* float: right; */
-    /* vertical-align: top; */
+  position: relative;
+  /* other styles goes here... */
+  display: inline-block;
+  /* padding-right: 10px; */
+  /* background-color: yellow; */
+  width: 20%;
+  font-size: 22px;
+  /* float: right; */
+  /* vertical-align: top; */
 }
 #close{
   color: #000000;
@@ -792,14 +796,15 @@ display: block;
   /* display: inline-flex; */
 }
 #camt{
-    /* other styles goes here... */
-    display: inline-block;
-    /* padding-right: 10px; */
-    /* background-color: yellow; */
-    width: 20%;
-    font-size: 20px;
-    /* float: right; */
-    /* vertical-align: top; */
+  position: relative;
+  /* other styles goes here... */
+  display: inline-block;
+  /* padding-right: 10px; */
+  /* background-color: yellow; */
+  width: 20%;
+  font-size: 22px;
+  /* float: right; */
+  /* vertical-align: top; */
 }
 #ttrend{
   /* color: rgb(94, 94, 73); */

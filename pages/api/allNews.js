@@ -17,7 +17,7 @@ async function getAllNews(stock){
     const newSites = ['yahoo', 'reuters', 'twitter', 'reddit']
     var allNews = [];
     for (let x = 0; x < newSites.length; ++x){
-      const res = await fetch(`https://invisor.axemgit2.repl.co/api/${newSites[x]}?stock=${stock}`);
+      const res = await fetch(`https://invisor.ml/api/${newSites[x]}?stock=${stock}`);
       const json = await res.json();
       allNews = allNews.concat(json);
     }

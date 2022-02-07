@@ -12,11 +12,14 @@ export default async (req, res) => {
 }
 
 async function getReddits(stock){
-    const nowDate = new Date();
-    const todayDate = nowDate.getDate();
+    // const nowDate = new Date();
+    // const todayDate = nowDate.getDate();
     var allReddits = [];
     for (let i = 0; i < 15; i++){
-      const res = await fetch(`https://scrapybook.axemgit2.repl.co/reddit?stock=${stock}&since=2022-01-${todayDate-i}&until=2022-01-${(todayDate+1)-i}`);
+      let iterDate = formatYmd(new Date(Date.now() - i * 24 * 60 * 60 * 1000));
+      let iterDatelast = formatYmd(new Date(Date.now() - (i+1) * 24 * 60 * 60 * 1000));
+      // console.log(iterDate,iterDatelast)
+      const res = await fetch(`https://scrapybook.axemgit2.repl.co/reddit?stock=${stock}&since=${iterDatelast}&until=${iterDate}`);
       const json = await res.json();
       allReddits = allReddits.concat(json);
     }

@@ -27,8 +27,8 @@ const Dashboard = function({
 }) {
   const router = useRouter();
   const [comp_name, setCompName] = useState("AAPL");
-  const [comp_price, setCompPrice] = useState("163.78");
-  const [prediction, setPrediction] = useState("165.48");
+  const [comp_price, setCompPrice] = useState("___");
+  const [prediction, setPrediction] = useState("___");
   const [comp_livedata, setComp_Livedata] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState(null);
@@ -36,23 +36,27 @@ const Dashboard = function({
   const [comp_open, setCompOpen] = useState("Loading..");
   const [comp_high, setCompHigh] = useState("Loading..");
   const [comp_low, setCompLow] = useState("Loading..");
-  const [comp_close, setCompClose] = useState("Loading..");
-
 
   useEffect(() => {
     checkUser(user);
-    // requestLastPrice();
   }, []);
 
   useEffect(() => {
     checkUser(user);
   }, [user]);
 
-  async function DOIT() {
-    setIsLoading(true);
-    // const res = await fetch(`https://cfb5-34-91-153-13.ngrok.io/get?stock=${comp_name}`);
-    // const json = await res.json();
+  async function runFUNC() {
     requestDetails();
+    getMongo();
+    requestPrediction();
+  }
+
+  async function requestPrediction() {
+    setIsLoading(true);
+    const res = await fetch(`https://01cf-34-68-122-37.ngrok.io/get?stock=${comp_name}`);
+    const json = await res.json();
+    setPrediction(json);
+    // sendMongo();
     setIsLoading(false);
   }
 
@@ -63,26 +67,18 @@ const Dashboard = function({
     setCompOpen(json.open[0]);
     setCompHigh(json.high[0]);
     setCompLow(json.low[0]);
-    setCompClose(json.close[0]);
+    setCompPrice(json.close[0]);
     setIsLoading(false);
   }
 
-  async function requestPrediction() {
-    setIsLoading(true);
-    const res = await fetch(`https://cfb5-34-91-153-13.ngrok.io/get?stock=${comp_name}`);
-    const json = await res.json();
-    setPrediction(json);
-    setIsLoading(false);
-  }
-
-  async function requestPriceData() {
+  /*async function requestPriceData() {
     setIsLoading(true);
     const res = await fetch(`https://invisorlink.herokuapp.com/https://query1.finance.yahoo.com/v8/finance/chart/${comp_name}?region=US&lang=en-US&includePrePost=false&interval=1d&useYfid=true&range=15d`);
     const json = await res.json();
     setComp_Livedata(json);
     console.log(comp_livedata)
     setIsLoading(false);
-  }
+  }*/
 
   async function requestLastPrice() {
     setIsLoading(true);
@@ -110,9 +106,7 @@ const Dashboard = function({
   }
 
   async function getMongo() {
-    const res = await fetch(
-      `/api/mongo?stock=AAPL`
-    );
+    const res = await fetch(`/api/mongo?stock=AAPL`);
     const json = await res.json()
     let data = json.map((obj) => {
       let date = obj.date //+ 'T05:00:00.000Z'
@@ -127,11 +121,6 @@ const Dashboard = function({
     if (user === null) {
       router.push("/");
     }
-  }
-
-  function fetchComp(){
-    console.log("Serach :",comp_name);
-    requestPrediction();
   }
 
   // console.log(chartData)
@@ -219,7 +208,7 @@ const Dashboard = function({
               placeholder="Search Stock..."
               className="search-input"
             />
-            <a onClick={() => DOIT()} className="search-btn">
+            <a onClick={() => runFUNC()} className="search-btn">
               <i className="fas fa-search"></i>
             </a>
           </div>
@@ -253,7 +242,7 @@ const Dashboard = function({
               <p id="low">Low</p>
               <p id="lamt">{comp_low}</p>
               <p id="close">Close</p>
-              <p id="camt">{comp_close}</p>
+              <p id="camt">{comp_price}</p>
             </div>
             <p id="trend">
               Trending Stocks
