@@ -28,7 +28,7 @@ const Dashboard = function({
   const router = useRouter();
   const [comp_name, setCompName] = useState("AAPL");
   const [comp_price, setCompPrice] = useState("___");
-  const [prediction, setPrediction] = useState("___");
+  const [prediction, setPrediction] = useState("162.50");
   const [comp_livedata, setComp_Livedata] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [chartData, setChartData] = useState(null);
@@ -53,7 +53,7 @@ const Dashboard = function({
 
   async function requestPrediction() {
     setIsLoading(true);
-    const res = await fetch(`https://01cf-34-68-122-37.ngrok.io/get?stock=${comp_name}`);
+    const res = await fetch(`https://7e82-34-71-199-73.ngrok.io/get?stock=${comp_name}`);
     const json = await res.json();
     setPrediction(json);
     // sendMongo();
@@ -61,14 +61,12 @@ const Dashboard = function({
   }
 
   async function requestDetails() {
-    setIsLoading(true);
     const res = await fetch(`/api/stockDetail?stock=${comp_name}`);
     const json = await res.json();
     setCompOpen(json.open[0]);
     setCompHigh(json.high[0]);
     setCompLow(json.low[0]);
     setCompPrice(json.close[0]);
-    setIsLoading(false);
   }
 
   /*async function requestPriceData() {
@@ -81,11 +79,9 @@ const Dashboard = function({
   }*/
 
   async function requestLastPrice() {
-    setIsLoading(true);
     const res = await fetch(`/api/lastprice?stock=${comp_name}`);
     const json = await res.json();
     setCompPrice(json);
-    setIsLoading(false);
   }
 
   async function sendMongo(event) {

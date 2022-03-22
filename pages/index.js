@@ -166,22 +166,22 @@ const Home = function({
             </li>
           </ul>
         </div>
-        <div class="teams" id="myteam">
+        <div className="teams" id="myteam">
           <h3>Meet the brains behind Invisor</h3>
         </div>
-        <div class="caption">
+        <div className="caption">
           <h3>Asim Ali (Developer)</h3>
-          <h3 class="isa">Isaac Opher Ullah (Developer)</h3>
+          <h3 className="isa">Isaac Opher Ullah (Developer)</h3>
         </div>
-        <div class="exp3" id="team">
+        <div className="exp3" id="team">
           <img src="asim.jpg" height="280" width="240" />
           <img src="isaacc.jpg" height="280" width="240" />
         </div>
-        <div class="caption2">
+        <div className="caption2">
           <h3>Ghulam Mustafa Bajwa (Developer)</h3>
           <h3>Anmool Yarmiah (Developer)</h3>
         </div>
-        <div class="exp4">
+        <div className="exp4">
           <img src="bajwaa.jpg" height="270" width="270" />
           <img src="anmoll.jpg" height="270" width="280" />
         </div>
