@@ -2,16 +2,11 @@ import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import styles from '../styles/Home.module.css';
 import { useEffect, useState } from "react";
 import firebase from 'firebase';
-import UserForm from './UserForm';
-import withFirebaseAuth, {
-  WrappedComponentProps,
-} from 'react-with-firebase-auth';
+import withFirebaseAuth from 'react-with-firebase-auth';
 import firebaseConfig from "./firebaseConfig";
 import Chart from './Chart';
-import { getData } from "./utils"
 
 import { TypeChooser } from "react-stockcharts/lib/helper";
 
@@ -51,15 +46,6 @@ const Dashboard = function({
     requestPrediction();
   }
 
-  async function requestPrediction() {
-    setIsLoading(true);
-    const res = await fetch(`https://7e82-34-71-199-73.ngrok.io/get?stock=${comp_name}`);
-    const json = await res.json();
-    setPrediction(json);
-    // sendMongo();
-    setIsLoading(false);
-  }
-
   async function requestDetails() {
     const res = await fetch(`/api/stockDetail?stock=${comp_name}`);
     const json = await res.json();
@@ -68,20 +54,14 @@ const Dashboard = function({
     setCompLow(json.low[0]);
     setCompPrice(json.close[0]);
   }
-
-  /*async function requestPriceData() {
+  
+  async function requestPrediction() {
     setIsLoading(true);
-    const res = await fetch(`https://invisorlink.herokuapp.com/https://query1.finance.yahoo.com/v8/finance/chart/${comp_name}?region=US&lang=en-US&includePrePost=false&interval=1d&useYfid=true&range=15d`);
-    const json = await res.json();
-    setComp_Livedata(json);
-    console.log(comp_livedata)
+    // const res = await fetch(`https://$aiBook_URL$/get?stock=${comp_name}`);
+    // const json = await res.json();
+    // setPrediction(json);
+    // sendMongo();
     setIsLoading(false);
-  }*/
-
-  async function requestLastPrice() {
-    const res = await fetch(`/api/lastprice?stock=${comp_name}`);
-    const json = await res.json();
-    setCompPrice(json);
   }
 
   async function sendMongo(event) {
@@ -113,6 +93,12 @@ const Dashboard = function({
     setChartData(data)
   }
 
+  async function requestLastPrice() {
+    const res = await fetch(`/api/lastprice?stock=${comp_name}`);
+    const json = await res.json();
+    setCompPrice(json);
+  }
+  
   function checkUser(user) {
     if (user === null) {
       router.push("/");

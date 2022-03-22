@@ -1,4 +1,3 @@
-import '../styles/globals.css'
 // import '../public/loginstyles.css'
 // import '../public/dashboardstyles.css'
 

@@ -1,10 +1,9 @@
-
+const SCRAPYBOOK_URL = process.env.scrapy_url;
 export default async (req, res) => {
   const { stock } = req.query;
 
   try {
     var news = await getNews(stock);
-    // var result = shake_shake(cleaner(news));
     res.status(200).json(news);
   } catch (e) {
     res.status(400).json({ error: e.message });
@@ -12,7 +11,7 @@ export default async (req, res) => {
 }
 
 async function getNews(stock){
-    const res = await fetch(`https://scrapybook.axemgit2.repl.co/yahoo?stock=${stock}`);
+    const res = await fetch(`https://${SCRAPYBOOK_URL}/yahoo?stock=${stock}`);
     const json = await res.json();
 
     for (const value of Object.entries(json)) {
@@ -21,24 +20,5 @@ async function getNews(stock){
     }
     return json
   }
-
-function shake_shake(arr) {
-    const dateNews = arr.reduce(function(results, item) {
-      if (!results[item.dates]) results[item.dates] = [];
-      results[ item.dates ].push(item.title);
-      
-      return results;
-    }, {});
-    // return dateNews
-    return Object.keys(dateNews).map(function(key) {
-      return { date: key, news: dateNews[key] };
-    });
-  }
-
-function cleaner(arr){
-  const cleaned = arr.filter((arr, index, self) =>
-    index === self.findIndex((t) => (t.title === arr.title)))
-  return cleaned
-}
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);

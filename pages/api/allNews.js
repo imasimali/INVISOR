@@ -1,3 +1,4 @@
+const INVISOR_URL = process.env.invisor_url;
 
 export default async (req, res) => {
   const { stock } = req.query;
@@ -17,7 +18,7 @@ async function getAllNews(stock){
     const newSites = ['yahoo', 'reuters', 'twitter', 'reddit']
     var allNews = [];
     for (let x = 0; x < newSites.length; ++x){
-      const res = await fetch(`https://invisor.ml/api/${newSites[x]}?stock=${stock}`);
+      const res = await fetch(`https://${INVISOR_URL}/api/${newSites[x]}?stock=${stock}`);
       const json = await res.json();
       allNews = allNews.concat(json);
     }

@@ -55,7 +55,7 @@ const Home = function({
 
   return (
     <div>
-      <div style={{ display: 'flex', 'justify-content': 'center !important' }}>
+      <div style={{ display: 'flex', justifyContent : 'center !important' }}>
         <Head>
           <title>Invisor - Login Page</title>
           <link rel="stylesheet" href="/loginstyles.css" type="text/css" />

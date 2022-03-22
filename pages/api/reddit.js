@@ -1,10 +1,9 @@
-
+const SCRAPYBOOK_URL = process.env.scrapy_url;
 export default async (req, res) => {
   const { stock } = req.query;
 
   try {
     var reddits = await getReddits(stock);
-    // var result = shake_shake(cleaner(reddits));
     res.status(200).json(reddits);
   } catch (e) {
     res.status(400).json({ error: e.message });
@@ -12,14 +11,12 @@ export default async (req, res) => {
 }
 
 async function getReddits(stock){
-    // const nowDate = new Date();
-    // const todayDate = nowDate.getDate();
     var allReddits = [];
     for (let i = 0; i < 15; i++){
       let iterDate = formatYmd(new Date(Date.now() - i * 24 * 60 * 60 * 1000));
       let iterDatelast = formatYmd(new Date(Date.now() - (i+1) * 24 * 60 * 60 * 1000));
-      // console.log(iterDate,iterDatelast)
-      const res = await fetch(`https://scrapybook.axemgit2.repl.co/reddit?stock=${stock}&since=${iterDatelast}&until=${iterDate}`);
+
+      const res = await fetch(`https://${SCRAPYBOOK_URL}/reddit?stock=${stock}&since=${iterDatelast}&until=${iterDate}`);
       const json = await res.json();
       allReddits = allReddits.concat(json);
     }
@@ -29,24 +26,5 @@ async function getReddits(stock){
     }
     return allReddits
   }
-
-function shake_shake(arr) {
-    const dateReddits = arr.reduce(function(results, item) {
-      if (!results[item.dates]) results[item.dates] = [];
-      results[ item.dates ].push(item.title);
-      
-      return results;
-    }, {});
-    // return dateReddits
-    return Object.keys(dateReddits).map(function(key) {
-      return { date: key, news: dateReddits[key] };
-    });
-  }
-
-function cleaner(arr){
-  const cleaned = arr.filter((arr, index, self) =>
-    index === self.findIndex((t) => (t.title === arr.title)))
-  return cleaned
-}
 
 const formatYmd = (date) => date.toISOString().slice(0, 10);
