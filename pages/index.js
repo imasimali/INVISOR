@@ -2,15 +2,10 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import firebase from "firebase";
-import UserForm from "./UserForm";
-import withFirebaseAuth, {
-  WrappedComponentProps,
-} from "react-with-firebase-auth";
+import withFirebaseAuth from "react-with-firebase-auth";
 import firebaseConfig from "./firebaseConfig";
-import Link from "next/link";
 
 
 const firebaseApp = !firebase.apps.length
@@ -57,13 +52,6 @@ const Home = function({
   function handleSignup() {
     createUserWithEmailAndPassword(email, password);
   }
-
-  // <React.Fragment>
-  //   {loading && <Loading />}
-  // </React.Fragment>
-
-  // <Head>  </Head>
-  // console.log(error,user);
 
   return (
     <div>
@@ -209,9 +197,5 @@ const Loading = () => (
 );
 
 const firebaseAppAuth = firebaseApp.auth();
-
-// const providers = {
-//   googleProvider: new firebase.auth.GoogleAuthProvider(),
-// };
 
 export default withFirebaseAuth({ firebaseAppAuth })(Home);
