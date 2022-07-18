@@ -1,7 +1,9 @@
 # FYP FRONTEND - INVISOR
 
-## INVISOR (A Web App for Equity Investment Advices)
+## INVISOR (React App for Equity Investment Advices)
 
-### This repo contains the INVISOR webapp built using Reactjs (NextJs)
+### This repo contains the INVISOR web app built using Reactjs (NextJs)
 
-#### This webapp is using Firebase for authentication and Mongodb for NoSQL
+#### This web app is using Firebase for authentication and MongoDB for NoSQL
+
+#### This web app uses the real-time scraped news data using [ScrapyBook](https://github.com/imasimali/ScrapyBook)
